@@ -1,6 +1,8 @@
 import sys
 import json
 import time
+import subprocess
+import scanner_functions
 
 def scan_domain(domain):
     """
@@ -9,6 +11,7 @@ def scan_domain(domain):
     """
     scan_results = {
         "scan_time": time.time(),  # Record the scan time in UNIX epoch seconds
+        "ipv4_addresses": scanner_functions.get_ipv4(domain)
     }
     return scan_results
 
