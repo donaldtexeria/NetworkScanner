@@ -11,7 +11,8 @@ def scan_domain(domain):
     """
     scan_results = {
         "scan_time": time.time(),  # Record the scan time in UNIX epoch seconds
-        "ipv4_addresses": scanner_functions.get_ipv4(domain)
+        "ipv4_addresses": scanner_functions.get_ipv4(domain),
+        "ipv6_addresses": scanner_functions.get_ipv6(domain)
     }
     return scan_results
 
@@ -25,7 +26,6 @@ def main():
     output_file = sys.argv[2]
 
     try:
-        # Read domains from the input file
         with open(input_file, "r") as file:
             domains = [line.strip() for line in file if line.strip()]
     except FileNotFoundError:
@@ -42,7 +42,7 @@ def main():
 
     # Write the results to the output JSON file
     with open(output_file, "w") as file:
-        json.dump(scan_results, file, sort_keys=True, indent=4)
+        json.dump(scan_results, file, sort_keys=False, indent=4)
     
     print(f"Scan results saved to '{output_file}'.")
 
