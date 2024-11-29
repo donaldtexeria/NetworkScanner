@@ -5,14 +5,17 @@ import subprocess
 import scanner_functions
 
 def scan_domain(domain):
-    """
-    Perform a basic scan on the domain and return a dictionary of results.
-    Currently, this function only records the scan time.
-    """
+    insecure_http = scanner_functions.check_insecure_HTTP(domain)
+    redirects = False if not insecure_http else scanner_functions.follow_redirects(domain)
+
     scan_results = {
         "scan_time": time.time(),  # Record the scan time in UNIX epoch seconds
         "ipv4_addresses": scanner_functions.get_ipv4(domain),
-        "ipv6_addresses": scanner_functions.get_ipv6(domain)
+        "ipv6_addresses": scanner_functions.get_ipv6(domain),
+        "http_server": scanner_functions.get_server_header(domain),
+        "insecure_http": insecure_http,
+        "redirect_to_https": redirects,
+        "hsts": scanner_functions.check_hsts(domain)
     }
     return scan_results
 
