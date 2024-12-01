@@ -35,7 +35,7 @@ def get_server_header(domain):
     
     conn = http.client.HTTPSConnection(host, timeout=5)
     try:
-        conn.request("GET", "/" + path, headers=headers)
+        conn.request("HEAD", "/" + path, headers=headers)
         response = conn.getresponse()
         header = response.getheader("Server")
         conn.close()
@@ -46,7 +46,7 @@ def get_server_header(domain):
 def check_insecure_HTTP(domain):
     conn = http.client.HTTPConnection(domain, timeout=5, port=80)
     try:
-        conn.request("GET", "/")
+        conn.request("HEAD", "/")
         response = conn.getresponse()
         conn.close()
         return True
@@ -58,7 +58,7 @@ def follow_redirects(domain, port = 80):
     while current_redirects < 10:
         #print("redirect number:", current_redirects)
         conn = http.client.HTTPConnection(domain, port, timeout=5)
-        conn.request("GET", "/")
+        conn.request("HEAD", "/")
         response = conn.getresponse()
         location = response.getheader("Location")
         if location:
@@ -83,7 +83,7 @@ def check_hsts(domain, port=80):
                 conn = http.client.HTTPConnection(domain, port, timeout=5)
             else:
                 conn = http.client.HTTPSConnection(domain, port, timeout=5)
-            conn.request("GET", "/")
+            conn.request("HEAD", "/")
             response = conn.getresponse()
             location = response.getheader("Location")
             if location:
@@ -105,4 +105,12 @@ def check_hsts(domain, port=80):
         return False
         
 
-        
+def get_rootca(domain, port=443):
+    cmd = ["openssl", "s_client", "-connect", f"{domain}:{port}", "-servername", domain]
+    result = subprocess.check_output(cmd, input=b"", timeout=5, stderr=subprocess.STDOUT).decode('utf-8')
+    #print(result)
+    result = result.split('\n')[0]
+    res = None
+    if "O = " in result:
+        res = result.split("O = ")[1].split(",")[0]
+    return res

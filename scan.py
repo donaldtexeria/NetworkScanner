@@ -15,7 +15,8 @@ def scan_domain(domain):
         "http_server": scanner_functions.get_server_header(domain),
         "insecure_http": insecure_http,
         "redirect_to_https": redirects,
-        "hsts": scanner_functions.check_hsts(domain)
+        "hsts": scanner_functions.check_hsts(domain),
+        "root_ca": scanner_functions.get_rootca(domain)
     }
     return scan_results
 
