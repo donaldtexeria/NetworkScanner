@@ -114,3 +114,18 @@ def get_rootca(domain, port=443):
     if "O = " in result:
         res = result.split("O = ")[1].split(",")[0]
     return res
+
+def get_rdns_names(ips):
+    names = []
+    for ip in ips:
+        cmd = ["dig", "-x", ip]
+        result = subprocess.check_output(cmd, timeout=2, stderr=subprocess.STDOUT).decode('utf-8')
+        if "ANSWER SECTION" not in result:
+            continue
+        result = result.split("ANSWER SECTION:")[1].strip().split('\n')
+        for line in result:
+            if "PTR" not in line:
+                break
+            name = line.split("PTR")[1].strip()
+            names.append(name)
+    return names

@@ -1,9 +1,9 @@
 {
     "youtube.com": {
-        "scan_time": 1733018213.810539,
+        "scan_time": 1733032222.2878568,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "142.250.65.174"
+            "142.250.80.46"
         ],
         "ipv6_addresses": [
             "2607:f8b0:4006:80e::200e"
@@ -12,10 +12,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "Google Trust Services LLC"
+        "root_ca": "Google Trust Services LLC",
+        "rdns_names": [
+            "lga34s34-in-f14.1e100.net."
+        ]
     },
     "en.wikipedia.org": {
-        "scan_time": 1733018214.838859,
+        "scan_time": 1733032223.560925,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "208.80.154.224"
@@ -23,30 +26,34 @@
         "ipv6_addresses": [
             "2620:0:861:ed1a::1"
         ],
-        "http_server": "mw-web.eqiad.main-864bbfd546-qlpq6",
+        "http_server": "mw-web.eqiad.main-864bbfd546-2tc2t",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": [
+            "text-lb.eqiad.wikimedia.org."
+        ]
     },
     "twitter.com": {
-        "scan_time": 1733018216.5053928,
+        "scan_time": 1733032225.980615,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "104.244.42.129",
+            "104.244.42.65",
             "104.244.42.1",
             "104.244.42.193",
-            "104.244.42.65"
+            "104.244.42.129"
         ],
         "ipv6_addresses": [],
         "http_server": "tsa_b",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": []
     },
     "facebook.com": {
-        "scan_time": 1733018217.323893,
+        "scan_time": 1733032228.057766,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "157.240.245.35"
@@ -58,25 +65,31 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": [
+            "edge-star-mini-shv-01-bos5.facebook.com."
+        ]
     },
     "amazon.com": {
-        "scan_time": 1733018218.862026,
+        "scan_time": 1733032229.7712178,
         "ipv4_addresses": [
             "8.8.8.8#53",
+            "52.94.236.248",
             "54.239.28.85",
-            "205.251.242.103",
-            "52.94.236.248"
+            "205.251.242.103"
         ],
         "ipv6_addresses": [],
         "http_server": "Server",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": [
+            "s3-console-us-standard.console.aws.amazon.com."
+        ]
     },
     "yelp.com": {
-        "scan_time": 1733018219.569591,
+        "scan_time": 1733032230.7981188,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "146.75.36.116"
@@ -86,76 +99,81 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": []
     },
     "reddit.com": {
-        "scan_time": 1733018220.911309,
+        "scan_time": 1733032232.3125389,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "151.101.65.140",
             "151.101.1.140",
             "151.101.193.140",
+            "151.101.65.140",
             "151.101.129.140"
         ],
         "ipv6_addresses": [
+            "2a04:4e42::396",
             "2a04:4e42:400::396",
             "2a04:4e42:600::396",
-            "2a04:4e42::396",
             "2a04:4e42:200::396"
         ],
         "http_server": "snooserv",
         "insecure_http": true,
         "redirect_to_https": false,
         "hsts": false,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": []
     },
     "imdb.com": {
-        "scan_time": 1733018221.344341,
+        "scan_time": 1733032233.0021079,
         "ipv4_addresses": [
             "8.8.8.8#53",
+            "52.94.228.167",
             "52.94.225.248",
-            "52.94.237.74",
-            "52.94.228.167"
+            "52.94.237.74"
         ],
         "ipv6_addresses": [],
         "http_server": "Server",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "Amazon"
+        "root_ca": "Amazon",
+        "rdns_names": []
     },
     "fandom.com": {
-        "scan_time": 1733018223.0961568,
+        "scan_time": 1733032237.378741,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "199.232.208.194",
-            "199.232.212.194"
+            "199.232.212.194",
+            "199.232.208.194"
         ],
         "ipv6_addresses": [],
         "http_server": "Varnish",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "GlobalSign"
+        "root_ca": "GlobalSign",
+        "rdns_names": []
     },
     "pinterest.com": {
-        "scan_time": 1733018223.624832,
+        "scan_time": 1733032237.828047,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "151.101.0.84",
-            "151.101.128.84",
             "151.101.192.84",
-            "151.101.64.84"
+            "151.101.64.84",
+            "151.101.128.84"
         ],
         "ipv6_addresses": [],
         "http_server": null,
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": []
     },
     "tripadvisor.com": {
-        "scan_time": 1733018224.2015092,
+        "scan_time": 1733032238.7839181,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "151.101.194.28",
@@ -168,10 +186,11 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "GlobalSign"
+        "root_ca": "GlobalSign",
+        "rdns_names": []
     },
     "instagram.com": {
-        "scan_time": 1733018224.633271,
+        "scan_time": 1733032240.3179781,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "157.240.245.174"
@@ -183,10 +202,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "DigiCert Inc"
+        "root_ca": "DigiCert Inc",
+        "rdns_names": [
+            "instagram-p42-shv-01-bos5.fbcdn.net."
+        ]
     },
     "walmart.com": {
-        "scan_time": 1733018226.944596,
+        "scan_time": 1733032242.421429,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "23.220.132.133"
@@ -196,10 +218,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "GlobalSign"
+        "root_ca": "GlobalSign",
+        "rdns_names": [
+            "a23-220-132-133.deploy.static.akamaitechnologies.com."
+        ]
     },
     "northwestern.edu": {
-        "scan_time": 1733018227.7897549,
+        "scan_time": 1733032243.414704,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "129.105.136.48"
@@ -209,10 +234,14 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": [
+            "evcommon-caesar-vip.northwestern.edu.",
+            "cnair.northwestern.edu."
+        ]
     },
     "mccormick.northwestern.edu": {
-        "scan_time": 1733018229.506618,
+        "scan_time": 1733032244.806676,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "165.124.149.20"
@@ -222,10 +251,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": [
+            "davinci20.tech.northwestern.edu."
+        ]
     },
     "kellogg.northwestern.edu": {
-        "scan_time": 1733018230.5963762,
+        "scan_time": 1733032246.154863,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "165.124.147.150"
@@ -235,10 +267,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": [
+            "www.kellogg.northwestern.edu."
+        ]
     },
     "users.cs.northwestern.edu": {
-        "scan_time": 1733018231.9812071,
+        "scan_time": 1733032247.468118,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "129.105.44.20"
@@ -248,10 +283,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": [
+            "web1.cs.northwestern.edu."
+        ]
     },
     "it.eecs.northwestern.edu": {
-        "scan_time": 1733018232.908035,
+        "scan_time": 1733032248.897738,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "129.105.5.142"
@@ -261,10 +299,13 @@
         "insecure_http": true,
         "redirect_to_https": false,
         "hsts": false,
-        "root_ca": "Unspecified"
+        "root_ca": "Unspecified",
+        "rdns_names": [
+            "it.ece.northwestern.edu."
+        ]
     },
     "uchicago.edu": {
-        "scan_time": 1733018233.653502,
+        "scan_time": 1733032249.9777348,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "3.215.148.80"
@@ -274,10 +315,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": [
+            "ec2-3-215-148-80.compute-1.amazonaws.com."
+        ]
     },
     "illinois.edu": {
-        "scan_time": 1733018234.4730089,
+        "scan_time": 1733032251.0550919,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "130.126.157.20"
@@ -289,10 +333,11 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": []
     },
     "stevetarzia.com": {
-        "scan_time": 1733018235.304024,
+        "scan_time": 1733032252.497507,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "3.143.61.245"
@@ -302,27 +347,31 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": [
+            "waffles.stevetarzia.com."
+        ]
     },
     "clocktab.com": {
-        "scan_time": 1733018236.146312,
+        "scan_time": 1733032253.522166,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "104.21.87.176",
-            "172.67.170.124"
+            "172.67.170.124",
+            "104.21.87.176"
         ],
         "ipv6_addresses": [
-            "2606:4700:3035::ac43:aa7c",
-            "2606:4700:3033::6815:57b0"
+            "2606:4700:3033::6815:57b0",
+            "2606:4700:3035::ac43:aa7c"
         ],
         "http_server": "cloudflare",
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Google Trust Services LLC"
+        "root_ca": "Google Trust Services LLC",
+        "rdns_names": []
     },
     "auditoryneuroscience.com": {
-        "scan_time": 1733018237.5609238,
+        "scan_time": 1733032255.655149,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "203.80.233.62"
@@ -332,10 +381,13 @@
         "insecure_http": true,
         "redirect_to_https": false,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": [
+            "203080233062.static.ctinets.com."
+        ]
     },
     "asee.org": {
-        "scan_time": 1733018239.5416021,
+        "scan_time": 1733032258.871336,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "57.152.51.153"
@@ -345,10 +397,11 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "The USERTRUST Network"
+        "root_ca": "The USERTRUST Network",
+        "rdns_names": []
     },
     "gradeinflation.com": {
-        "scan_time": 1733018240.720151,
+        "scan_time": 1733032260.3117802,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "51.79.45.180"
@@ -358,10 +411,13 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": [
+            "gw1.ahs5.r4l.com."
+        ]
     },
     "spacejam.com": {
-        "scan_time": 1733018241.434568,
+        "scan_time": 1733032261.262696,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "99.83.180.228",
@@ -372,10 +428,14 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": true,
-        "root_ca": "GlobalSign"
+        "root_ca": "GlobalSign",
+        "rdns_names": [
+            "a259cf76d74e1f65f.awsglobalaccelerator.com.",
+            "a259cf76d74e1f65f.awsglobalaccelerator.com."
+        ]
     },
     "pmichaud.com": {
-        "scan_time": 1733018242.56471,
+        "scan_time": 1733032262.821729,
         "ipv4_addresses": [
             "8.8.8.8#53",
             "23.254.203.248"
@@ -385,14 +445,17 @@
         "insecure_http": true,
         "redirect_to_https": false,
         "hsts": false,
-        "root_ca": "Internet Security Research Group"
+        "root_ca": "Internet Security Research Group",
+        "rdns_names": [
+            "hwsrv-233708.hostwindsdns.com."
+        ]
     },
     "kli.org": {
-        "scan_time": 1733018243.54737,
+        "scan_time": 1733032264.251628,
         "ipv4_addresses": [
             "8.8.8.8#53",
-            "104.21.4.169",
-            "172.67.132.72"
+            "172.67.132.72",
+            "104.21.4.169"
         ],
         "ipv6_addresses": [
             "2606:4700:3033::6815:4a9",
@@ -402,6 +465,7 @@
         "insecure_http": true,
         "redirect_to_https": true,
         "hsts": false,
-        "root_ca": "Google Trust Services LLC"
+        "root_ca": "Google Trust Services LLC",
+        "rdns_names": []
     }
 }

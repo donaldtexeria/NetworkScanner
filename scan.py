@@ -5,18 +5,20 @@ import subprocess
 import scanner_functions
 
 def scan_domain(domain):
+    ipv4s = scanner_functions.get_ipv4(domain)
     insecure_http = scanner_functions.check_insecure_HTTP(domain)
     redirects = False if not insecure_http else scanner_functions.follow_redirects(domain)
 
     scan_results = {
         "scan_time": time.time(),  # Record the scan time in UNIX epoch seconds
-        "ipv4_addresses": scanner_functions.get_ipv4(domain),
+        "ipv4_addresses": ipv4s,
         "ipv6_addresses": scanner_functions.get_ipv6(domain),
         "http_server": scanner_functions.get_server_header(domain),
         "insecure_http": insecure_http,
         "redirect_to_https": redirects,
         "hsts": scanner_functions.check_hsts(domain),
-        "root_ca": scanner_functions.get_rootca(domain)
+        "root_ca": scanner_functions.get_rootca(domain),
+        "rdns_names": scanner_functions.get_rdns_names(ipv4s)
     }
     return scan_results
 
