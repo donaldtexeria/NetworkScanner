@@ -3,9 +3,14 @@ import http.client
 import json
 import urllib
 import urllib.parse
+
 def get_ipv4(domain):
     addresses = []
     result = subprocess.check_output(["nslookup", domain, "8.8.8.8"], timeout=2, stderr = subprocess.STDOUT).decode("utf-8")
+    if "Non-authoritative answer:" in result:
+        result = result.split("Non-authoritative answer:")[1]
+    else:
+        return addresses
     result = result.split('\n')
     for line in result:
         if "Address:" in line:
@@ -103,11 +108,25 @@ def check_hsts(domain, port=80):
         return False
     except:
         return False
-        
 
+def get_tls_versions(domain):
+    tls_versions = {"TLSv1.0": "-tls1", "TLSv1.1": "-tls1_1", "TLSv1.2": "-tls1_2", "TLSv1.3": "-tls1_3"}
+    try:
+        supported_versions = []
+        for version, option in tls_versions.items():
+            cmd = ["openssl", "s_client", option, "-connect", f"{domain}:443"]
+            try:
+                result = subprocess.check_output(cmd, input=b'', timeout=2, stderr=subprocess.STDOUT).decode('utf-8')
+                supported_versions.append(version)
+            except:
+                #print("Version", version, "not supported")
+                pass
+        return supported_versions
+    except:
+        return []
 def get_rootca(domain, port=443):
-    cmd = ["openssl", "s_client", "-connect", f"{domain}:{port}", "-servername", domain]
-    result = subprocess.check_output(cmd, input=b"", timeout=5, stderr=subprocess.STDOUT).decode('utf-8')
+    cmd = f"echo | openssl s_client -connect {domain}:{port} -servername {domain}"
+    result = subprocess.check_output(cmd, timeout=5, shell=True, stderr=subprocess.STDOUT).decode('utf-8')
     #print(result)
     result = result.split('\n')[0]
     res = None
@@ -129,3 +148,18 @@ def get_rdns_names(ips):
             name = line.split("PTR")[1].strip()
             names.append(name)
     return names
+
+def get_rtt(ips):
+    min_rtt = float('inf')
+    max_rtt = 0
+    for ip in ips:
+        cmd = f"sh -c \"time echo -e \'\\x1dclose\\x0d\' | telnet {ip} 443\""
+        result = subprocess.check_output(cmd, timeout=2, shell=True, stderr=subprocess.STDOUT).decode('utf-8')
+        time = result.split('real')[1].split('\n')[0].strip()
+        time = float(time[2:-1])
+        time = int(time * 1000)
+        if time > max_rtt:
+            max_rtt = time
+        if time < min_rtt:
+            min_rtt = time
+    return [min_rtt, max_rtt] 
