@@ -6,36 +6,43 @@ import urllib.parse
 import maxminddb
 from geopy.geocoders import Nominatim
 
-def get_ipv4(domain):
-    addresses = []
-    try:
-        result = subprocess.check_output(["nslookup", domain, "8.8.8.8"], timeout=2, stderr = subprocess.STDOUT).decode("utf-8")
-        if "Non-authoritative answer:" in result:
-            result = result.split("Non-authoritative answer:")[1]
-        else:
-            return addresses
-        result = result.split('\n')
-        for line in result:
-            if "Address:" in line:
-                address = line.split("Address:")[1].strip()
-                addresses.append(address)
-    except:
-        pass
+def get_ipv4(domain, resolvers):
+    addresses = set()
+    for resolver in resolvers:
+        try:
+            result = subprocess.check_output(["nslookup", "-query=A", domain, resolver], timeout=2, stderr = subprocess.STDOUT).decode("utf-8")
+            if "Non-authoritative answer:" in result:
+                result = result.split("Non-authoritative answer:")[1]
+            else:
+                continue
+            result = result.split('\n')
+            for line in result:
+                if "Address:" in line:
+                    address = line.split("Address:")[1].strip()
+                    addresses.add(address)
+        except:
+            pass
             
-    return addresses
+    return list(addresses)
 
-def get_ipv6(domain):
-    addresses = []
-    try:
-        result = subprocess.check_output(["nslookup", "-type=AAAA", domain, "8.8.8.8"], timeout=2, stderr = subprocess.STDOUT).decode("utf-8")
-        result = result.split('\n')
-        for line in result:
-            if "has AAAA address" in line:
-                address = line.split("has AAAA address")[1].strip()
-                addresses.append(address)
-    except:
-        pass
-    return addresses
+def get_ipv6(domain, resolvers):
+    addresses = set()
+    for resolver in resolvers:
+        try:
+            result = subprocess.check_output(["nslookup", "-type=AAAA", domain, resolver], timeout=2, stderr = subprocess.STDOUT).decode("utf-8")
+            if "Non-authoritative answer:" in result:
+                result = result.split("Non-authoritative answer:")[1]
+            else:
+                continue
+            result = result.split('\n')
+            for line in result:
+                if "Address:" in line:
+                    address = line.split("Address:")[1].strip()
+                    addresses.add(address)
+        except:
+            pass
+            
+    return list(addresses)
 
 def get_server_header(domain):
     url = domain

@@ -3,10 +3,11 @@ import json
 import time
 import subprocess
 import scanner_functions
+import collections
 
-def scan_domain(domain):
+def scan_domain(domain, dns_resolvers):
     scan_time = time.time()
-    ipv4s = scanner_functions.get_ipv4(domain)
+    ipv4s = scanner_functions.get_ipv4(domain, dns_resolvers)
     insecure_http = scanner_functions.check_insecure_HTTP(domain)
     redirects = False if not insecure_http else scanner_functions.follow_redirects(domain)
     tls_versions = scanner_functions.get_tls_versions(domain)
@@ -16,7 +17,7 @@ def scan_domain(domain):
     scan_results = {
         "scan_time": scan_time,  # Record the scan time in UNIX epoch seconds
         "ipv4_addresses": ipv4s,
-        "ipv6_addresses": scanner_functions.get_ipv6(domain),
+        "ipv6_addresses": scanner_functions.get_ipv6(domain, dns_resolvers),
         "http_server": scanner_functions.get_server_header(domain),
         "insecure_http": insecure_http,
         "redirect_to_https": redirects,
@@ -48,10 +49,14 @@ def main():
     # Dictionary to store the scan results
     scan_results = {}
 
+    #make resolver list
+    dns_resolvers = []
+    with open("public_dns_resolvers.txt", "r") as f:
+        dns_resolvers = [line.strip() for line in f.readlines()]
     # Scan each domain
     for domain in domains:
         print(f"Scanning domain: {domain}")
-        scan_results[domain] = scan_domain(domain)
+        scan_results[domain] = scan_domain(domain, dns_resolvers)
 
     # Write the results to the output JSON file
     with open(output_file, "w") as file:
