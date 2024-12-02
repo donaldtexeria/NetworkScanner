@@ -11,6 +11,7 @@ def scan_domain(domain):
     redirects = False if not insecure_http else scanner_functions.follow_redirects(domain)
     tls_versions = scanner_functions.get_tls_versions(domain)
     root_ca = None if len(tls_versions) == 0 else scanner_functions.get_rootca(domain)
+    locations = scanner_functions.get_geo_locations(ipv4s)
 
     scan_results = {
         "scan_time": scan_time,  # Record the scan time in UNIX epoch seconds
@@ -23,7 +24,8 @@ def scan_domain(domain):
         "tls_versions": tls_versions,
         "root_ca": root_ca,
         "rdns_names": scanner_functions.get_rdns_names(ipv4s),
-        "rtt_range": scanner_functions.get_rtt(ipv4s)
+        "rtt_range": scanner_functions.get_rtt(ipv4s),
+        "geo_locations": locations
     }
     return scan_results
 

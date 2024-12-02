@@ -1,28 +1,47 @@
 import http.client
 import subprocess
+import maxminddb
+from geopy.geocoders import Nominatim
 
 import urllib.parse
 
-def get_rtt(ips):
-    min_rtt = float('inf')
-    max_rtt = 0
+def reverse_geocode(lat, lon):
+    geolocator = Nominatim(user_agent="donda")
+    location = geolocator.reverse((lat, lon), language='en')
+    if location:
+        address = location.raw.get('address', {})
+        city = address.get('city', None)
+        state = address.get('state', None)
+        country = address.get('country', None)
+        ans = ""
+        if city:
+            ans += city + ", "
+        if state:
+            ans += state + ", "
+        if country:
+            ans += country
+            
+        return ans
+    else:
+        return
+
+def get_geo_locations(ips):
+    locations = set()
     for ip in ips:
-        cmd = f"sh -c \"time echo -e \'\\x1dclose\\x0d\' | telnet {ip} 443\""
-        result = subprocess.check_output(cmd, timeout=2, shell=True, stderr=subprocess.STDOUT).decode('utf-8')
-        time = result.split('real')[1].split('\n')[0].strip()
-        time = float(time[2:-1])
-        time = int(time * 1000)
-        if time > max_rtt:
-            max_rtt = time
-        if time < min_rtt:
-            min_rtt = time
-    return [min_rtt, max_rtt] 
+        with maxminddb.open_database("GeoLite2-City.mmdb") as reader:
+            loc_info = reader.get(ip)
+            lat = float(loc_info["location"]["latitude"])
+            lon = float(loc_info["location"]["longitude"])
+            location = reverse_geocode(lat, lon)
+            locations.add(location)
+    return list(locations)
+    
+            
 
 
 if __name__ == "__main__":
     ips = [
-            "104.21.4.169",
-            "172.67.132.72"
+            "129.105.136.48"
         ]
-    rtt = get_rtt(ips)
-    print(rtt)
+    locations = get_geo_locations(ips)
+    print(locations)
